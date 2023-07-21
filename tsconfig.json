@@ -4,7 +4,8 @@
     "noImplicitAny": true,
     "module": "es2022",
     "target": "es2022",
-    "allowJs": true
+    "allowJs": true,
+    "sourceMap": true,
   },
   "files": ["src/index.ts"]
 }
