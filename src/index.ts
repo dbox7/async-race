@@ -3,14 +3,14 @@ import * as server from './server-api';
 
 function createEl(type: string, ...cl: string[]) {
     const res = document.createElement(type);
-    cl.forEach(item => res.classList.add(item));
+    cl.forEach((item) => res.classList.add(item));
     return res;
 }
 
 async function handleClick(event: MouseEvent) {
     const button = event.target as HTMLElement;
-     
-    if (button.className !== 'button') {    
+
+    if (button.className !== 'button') {
         return;
     }
 
@@ -25,8 +25,8 @@ async function handleClick(event: MouseEvent) {
     const car = trace.children[0];
 
     car.animate([
-        {transform: 'translate(0)'},
-        {transform: `translate(${width - 50}px)`}
+        { transform: 'translate(0)' },
+        { transform: `translate(${width - 50}px)` },
     ], time);
 }
 
@@ -35,24 +35,24 @@ async function handleClick(event: MouseEvent) {
 async function init() {
     const cars = await server.getCars();
     const garage = document.querySelector('.garage');
-    garage.addEventListener('click', handleClick)
+    garage.addEventListener('click', handleClick);
 
-    console.log(cars)
-    cars.forEach(item => {        
+    console.log(cars);
+    cars.forEach((item) => {
         const carMenu = createEl('div', 'car-menu');
-        
+
         const startButton = createEl('button', 'button');
         startButton.innerHTML = 'Start';
 
         const trace = createEl('div', 'trace');
         const car = createEl('div', 'car');
 
-        startButton.setAttribute('data-id', `${item.id}`)
-        
+        startButton.setAttribute('data-id', `${item.id}`);
+
         trace.appendChild(car);
         carMenu.append(startButton, trace);
         garage.appendChild(carMenu);
-    })
+    });
 }
 
-init()
+init();

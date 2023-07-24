@@ -1,15 +1,15 @@
-interface ICar {
+export interface ICar {
     id: number,
     name: string,
     color: string
 }
 
-interface IEngine {
+export interface IEngine {
     velocity: number,
     distance: number
 }
 
-interface IWinner {
+export interface IWinner {
     id: number,
     wins: number,
     time: number
