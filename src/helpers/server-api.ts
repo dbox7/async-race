@@ -2,7 +2,7 @@ import { ICar, IEngine, IWinner } from './types';
 
 const BASIC_URL: string = 'http://127.0.0.1:3000';
 
-export const getCars = async (limit: number = 0, page: number = 1): Promise<ICar[]> => {
+export const getCars = async (page: number = 1, limit: number = 7): Promise<ICar[]> => {
     const res = await fetch(`${BASIC_URL}/garage?_limit=${limit}&_page=${page}`);
 
     return res.json();
@@ -15,13 +15,14 @@ export const getOneCar = async (id: number): Promise<ICar> => {
 };
 
 export const createCar = async (car: ICar) => {
-    await fetch(`${BASIC_URL}/garage`, {
+    const res = await fetch(`${BASIC_URL}/garage`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(car),
     });
+    return res.json();
 };
 
 export const deleteCar = async (id: number) => {
@@ -89,18 +90,3 @@ export const updateWinner = async (id: number, winner: IWinner) => {
         body: JSON.stringify(winner),
     });
 };
-
-// export default module.exports = {
-//     getCars,
-//     getOneCar,
-//     createCar,
-//     deleteCar,
-//     updateCar,
-//     engineStartStop,
-//     switchEngineDriveMode,
-//     getWinners,
-//     getOneWinner,
-//     createWinner,
-//     deleteWinner,
-//     updateWinner
-// }

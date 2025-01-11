@@ -1,5 +1,6 @@
 import '../style.css';
-import * as server from './server-api';
+import * as server from './helpers/server-api';
+import { drawGarage } from './garage/garage-view'
 
 function createEl(type: string, ...cl: string[]) {
     const res = document.createElement(type);
@@ -37,7 +38,7 @@ async function init() {
     const garage = document.querySelector('.garage');
     garage.addEventListener('click', handleClick);
 
-    console.log(cars);
+    //console.log(cars);
     cars.forEach((item) => {
         const carMenu = createEl('div', 'car-menu');
 
@@ -55,4 +56,7 @@ async function init() {
     });
 }
 
-init();
+//init();
+drawGarage();
+
+
